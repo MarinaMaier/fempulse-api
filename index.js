@@ -16,9 +16,12 @@ app.use('/signup', signupRoutes); // Use signup routes
 app.use('/login', loginRoutes);   // Use login routes
 app.use('/home', homeRoutes);  // Calendar routes
 
+app.use('/signup', signupRoutes); // Use signup routes
+app.use('/login', loginRoutes);   // Use login routes
+
 app.get('/', (_req, res) => {
-    res.send('Welcome to FemPulse');
-  });
+    res.send('Welcome to FemPulse API');
+});
 
 app.listen(PORT, function () {
     console.log(`Server is now listening at ${PORT}`);
