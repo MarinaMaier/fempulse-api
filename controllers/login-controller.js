@@ -9,13 +9,12 @@ const loginUser = async (req, res) => {
       const user = await knex("signup")
         .where({ email, password })
         .first();
-  
       if (!user) {
         return res.status(401).json({
           message: "Invalid email or password",
         });
       }
-      const token = jwt.sign({username: email}, key)
+      const token = jwt.sign({username: user.id}, key)
       // If user exists, return success response
       res.status(200).json({
         message: "Login successful",
