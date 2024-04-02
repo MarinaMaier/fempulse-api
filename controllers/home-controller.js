@@ -2,6 +2,7 @@ const knex = require("knex")(require("../knexfile"));
 const jwt = require("jsonwebtoken");
 const key = process.env.SECRET_KEY;
 
+// Controller function to retrieve events for a specific date and user
 const index = async (req, res) => {
   try {
     const { authorization } = req.headers;
@@ -24,6 +25,7 @@ const index = async (req, res) => {
   }
 };
 
+// Controller function to add events for a specific date and user
 const addEvents = async (req, res) => {
   const { authorization } = req.headers;
   const { date } = req.params;

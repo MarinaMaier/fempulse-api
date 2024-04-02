@@ -2,6 +2,7 @@ const knex = require("knex")(require("../knexfile"));
 const jwt = require('jsonwebtoken');
 const key = process.env.SECRET_KEY;
 
+// Controller function to handle user login
 const loginUser = async (req, res) => {
     try {
       const { email, password } = req.body;

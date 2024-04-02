@@ -2,6 +2,7 @@ const knex = require("knex")(require("../knexfile"));
 
 const signupAttr = ["email", "password"];
 
+// Controller function to add a new user
 const addUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -12,7 +13,7 @@ const addUser = async (req, res) => {
         });
       }
     }
-
+    // Validating email 
     const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!validEmailRegex.test(email)) {
       return res.status(400).json({
@@ -20,7 +21,7 @@ const addUser = async (req, res) => {
       });
     }
 
-    // Do the password check here
+   // Validating password
     const validPassword = /^(?=.*[a-zA-Z])(?=.*\d)/;
     if (!validPassword.test(password)) {
       return res.status(400).json({
@@ -36,7 +37,7 @@ const addUser = async (req, res) => {
         message: "User exists",
       });
     }
-
+    // Inserting new user into the database
     const result = await knex("signup").insert(req.body);
 
     const newUserId = result[0];
