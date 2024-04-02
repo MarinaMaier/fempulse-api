@@ -7,6 +7,7 @@ const interceptorMiddleware = require('./utils/interceptor-middleware');
 const signupRoutes = require('./routes/signup-routes');
 const loginRoutes = require('./routes/login-routes');
 const homeRoutes = require('./routes/home-routes');
+const logoutRoutes = require('./routes/logout-routes');
 
 app.use(express.json());
 app.use(cors({ origin: CORS_ORIGIN }));
@@ -17,7 +18,7 @@ app.use(interceptorMiddleware); // Intercepts and validates token
 app.use('/signup', signupRoutes); // Use signup routes
 app.use('/login', loginRoutes);   // Use login routes
 app.use('/home', homeRoutes);  // Use home routes
-app.use('/logout', homeRoutes);
+app.use('/logout', logoutRoutes); 
 
 
 app.get('/', (_req, res) => {
