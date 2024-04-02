@@ -1,8 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const PORT = process.env.PORT || 8080;
-const CORS_ORIGINS = process.env.ALLOWED_ORIGINS || ['http://localhost:3000', 'https://lustrous-brigadeiros-29cd1e.netlify.app'];
+const PORT = process.env.PORT
 const interceptorMiddleware = require("./utils/interceptor-middleware");
 const signupRoutes = require("./routes/signup-routes");
 const loginRoutes = require("./routes/login-routes");
@@ -15,7 +14,7 @@ app.use(
   cors({
     origin: function (origin, callback) {
       // Check if origin is allowed
-      if (!origin || CORS_ORIGINS.includes(origin)) {
+      if (!origin || process.env.ALLOWED_ORIGINS.includes(origin)) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
