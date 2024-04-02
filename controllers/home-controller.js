@@ -7,7 +7,7 @@ const index = async (req, res) => {
   try {
     const { authorization } = req.headers;
     const { date } = req.params;
-    const userId = jwt.decode(authorization.slice("Bearer ".length), key)?.username;
+    const userId = jwt.decode(authorization?.slice("Bearer ".length), key)?.username;
     const events = await knex("calendar_events")
       .select("calendar_events.id", "calendar_events.events")
       .where({ "calendar_events.date": date })
