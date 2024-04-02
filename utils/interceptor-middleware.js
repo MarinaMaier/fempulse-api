@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const interceptorMiddleware = (req, res, next) => {
     // Signup & Login call where token check is not required
     const ignoreTokenCheck = [
+        '/favicon.ico',
         '/signup',
         '/login'
     ]
@@ -15,7 +16,7 @@ const interceptorMiddleware = (req, res, next) => {
 
     const { authorization } = req.headers;
     try {
-        const token = authorization.slice("Bearer ".length)
+        const token = authorization?.slice("Bearer ".length)
         jwt.verify(token, process.env.SECRET_KEY);
         next();
     } catch (error) {
